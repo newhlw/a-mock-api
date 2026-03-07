@@ -8,17 +8,39 @@ export default function App() {
   const [portfolio, setPortfolio] = useState(null);
   const [githubData, setGithubData] = useState(null);
   const [repos, setRepos] = useState([]);
+  const [aiBio, setAiBio] = useState(null);
 
-  const handleGenerate = (formData, ghData, ghRepos) => {
+  const handleGenerate = async (formData, ghData, ghRepos) => {
     setPortfolio(formData);
     setGithubData(ghData);
     setRepos(ghRepos);
+
+    // Generate AI bio
+    try {
+      const res = await fetch("/api/ai/generate-bio", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          title: formData.title,
+          github: ghData,
+          linkedin: formData.linkedin,
+          skills: formData.skills,
+          repos: ghRepos,
+        }),
+      });
+      const data = await res.json();
+      if (data.status === 200) {
+        setAiBio(data.data);
+      }
+    } catch (err) {
+      console.error("AI bio generation failed:", err);
+    }
+
     setView("preview");
   };
 
-  const handleBack = () => {
-    setView("form");
-  };
+  const handleBack = () => setView("form");
 
   return (
     <>
@@ -37,15 +59,16 @@ export default function App() {
             portfolio={portfolio}
             githubData={githubData}
             repos={repos}
+            aiBio={aiBio}
             onBack={handleBack}
           />
         )}
         {view === "preview" && !portfolio && (
           <div className="empty-state">
-            <h2>No portfolio yet</h2>
-            <p>Fill in your details to generate your portfolio.</p>
+            <h2>Nothing here yet</h2>
+            <p>Create your portfolio to see the preview.</p>
             <button className="btn btn-primary" onClick={handleBack}>
-              Create Portfolio
+              Get Started
             </button>
           </div>
         )}

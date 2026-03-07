@@ -3,6 +3,7 @@ const path = require("path");
 const cors = require("cors");
 const portfolioRoutes = require("./routes/portfolio");
 const githubRoutes = require("./routes/github");
+const aiRoutes = require("./routes/ai");
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -16,6 +17,7 @@ app.use(express.static(path.join(__dirname, "client", "dist")));
 // API routes
 app.use("/api/portfolio", portfolioRoutes);
 app.use("/api/github", githubRoutes);
+app.use("/api/ai", aiRoutes);
 
 // Fallback to React app for client-side routing
 app.get("*", (req, res) => {

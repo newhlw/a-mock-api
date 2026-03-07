@@ -82,73 +82,62 @@ export default function PortfolioForm({
   return (
     <section className="form-section">
       <form className="form-card" onSubmit={handleSubmit}>
-        <h2>Build Your Portfolio</h2>
+        <h2>Build your portfolio</h2>
+        <p className="form-subtitle">
+          Connect your GitHub, add your details, and let AI write your bio.
+        </p>
 
         {/* GitHub Import */}
         <div className="github-import">
-          <span className="github-import-label">Import from GitHub:</span>
+          <span className="gh-label">GitHub</span>
           <input
             type="text"
-            placeholder="Enter GitHub username"
+            placeholder="username"
             name="github"
             value={form.github}
             onChange={handleChange}
           />
           <button
             type="button"
-            className="btn btn-github"
+            className="btn btn-sm"
             onClick={fetchGitHub}
             disabled={loading}
           >
             {loading ? (
               <span className="loading">
-                <span className="spinner"></span> Fetching...
+                <span className="spinner" /> Fetching
               </span>
             ) : (
-              "Fetch Profile"
+              "Import"
             )}
           </button>
         </div>
 
         {githubData && (
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "12px",
-              marginBottom: "20px",
-              padding: "12px",
-              background: "#f0fdf4",
-              borderRadius: "8px",
-              fontSize: "14px",
-              color: "#166534",
-            }}
-          >
-            <img
-              src={githubData.avatar}
-              alt=""
-              style={{ width: 32, height: 32, borderRadius: "50%" }}
-            />
-            GitHub profile loaded: <strong>{githubData.login}</strong> (
-            {githubData.publicRepos} repos, {githubData.followers} followers)
+          <div className="gh-success">
+            <img src={githubData.avatar} alt="" />
+            <span>
+              <strong>{githubData.login}</strong> &mdash; {githubData.publicRepos} repos,{" "}
+              {githubData.followers} followers
+            </span>
           </div>
         )}
 
         <div className="form-grid">
           <div className="form-group">
-            <label>Full Name *</label>
+            <label>Name</label>
             <input
               type="text"
               name="name"
               value={form.name}
               onChange={handleChange}
-              placeholder="John Doe"
+              placeholder="Jane Doe"
               required
             />
           </div>
 
           <div className="form-group">
-            <label>Professional Title *</label>
+            <label>Title</label>
             <input
               type="text"
               name="title"
@@ -160,17 +149,7 @@ export default function PortfolioForm({
           </div>
 
           <div className="form-group full-width">
-            <label>Bio</label>
-            <textarea
-              name="bio"
-              value={form.bio}
-              onChange={handleChange}
-              placeholder="A short description about yourself..."
-            />
-          </div>
-
-          <div className="form-group full-width">
-            <label>LinkedIn Profile URL</label>
+            <label>LinkedIn URL</label>
             <input
               type="url"
               name="linkedin"
@@ -187,25 +166,21 @@ export default function PortfolioForm({
               name="linkedinTitle"
               value={form.linkedinTitle}
               onChange={handleChange}
-              placeholder="e.g. Software Engineer at Google"
+              placeholder="Software Engineer at Google"
             />
           </div>
 
           <div className="form-group full-width">
             <label>Skills</label>
-            <div className="skills-input-row">
+            <div className="skills-row">
               <input
                 type="text"
                 value={skillInput}
                 onChange={(e) => setSkillInput(e.target.value)}
                 onKeyDown={handleSkillKeyDown}
-                placeholder="Type a skill and press Enter"
+                placeholder="Type a skill, press Enter"
               />
-              <button
-                type="button"
-                className="btn btn-secondary"
-                onClick={addSkill}
-              >
+              <button type="button" className="btn btn-sm" onClick={addSkill}>
                 Add
               </button>
             </div>
@@ -215,7 +190,7 @@ export default function PortfolioForm({
                   <span className="skill-tag" key={s}>
                     {s}
                     <button type="button" onClick={() => removeSkill(s)}>
-                      x
+                      &times;
                     </button>
                   </span>
                 ))}

@@ -4,9 +4,7 @@ export default function Header({ view, onNavigate }) {
   return (
     <header className="header">
       <div className="container header-inner">
-        <div className="logo">
-          Portfolio<span>Maker</span>
-        </div>
+        <div className="logo">portfolio.</div>
         <ul className="nav-links">
           <li>
             <button
