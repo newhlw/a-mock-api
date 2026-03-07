@@ -1,15 +1,18 @@
 {
-  "name": "newrepo",
+  "name": "portfolio-maker",
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
+    "build:client": "cd client && npm install && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": ["portfolio", "github", "linkedin"],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "A GitHub and LinkedIn portfolio maker website",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.21.2"
   }
 }
