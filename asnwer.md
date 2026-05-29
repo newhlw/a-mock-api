@@ -18,9 +18,11 @@ Building a Pipeline
 
 Math Node Demo
 "Just to show another example quickly — I built a small pipeline using the Math node. Two Input nodes feed into it, and the result goes to an Output node. Ran it, and it worked perfectly."
-now i will give the code wlathorugh about what i did and why.
+
 System Design
 "Now let me talk about how I chnaged the code to make it".
+
+now i will give the code wlathorugh about what i did and why.
 Frontend
 1. BaseNode — Why I made it
 "So every node in the app has the same basic structure — a container, a title, handles on the sides, and some content in the middle. I was literally copy-pasting 40 to 50 lines of code for every single node and only changing the middle part."
