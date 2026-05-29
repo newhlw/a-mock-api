@@ -18,7 +18,7 @@ Building a Pipeline
 
 Math Node Demo
 "Just to show another example quickly — I built a small pipeline using the Math node. Two Input nodes feed into it, and the result goes to an Output node. Ran it, and it worked perfectly."
-
+now i will give the code wlathorugh about what i did and why.
 System Design
 "Now let me talk about how I chnaged the code to make it".
 Frontend
